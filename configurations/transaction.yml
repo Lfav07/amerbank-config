@@ -15,7 +15,7 @@ spring:
     locations: classpath:db/migration/transaction
 
 transaction:
-  account-service-base: "http://account/accounts/internal"
+  account-service-base: "http://account/internal"
   endpoint-owned: "/owned"
   endpoint-deposit: "/deposit"
   endpoint-payment: "/payment"
