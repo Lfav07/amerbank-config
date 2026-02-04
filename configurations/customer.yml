@@ -20,7 +20,7 @@ auth:
     register:
       path: /auth/internal/register
     user-by-email:
-      path: /auth/admin/users/by-email
+      path: /auth/internal/users/by-email
 kafka:
   bootstrap-servers: localhost:9092
   producer:
