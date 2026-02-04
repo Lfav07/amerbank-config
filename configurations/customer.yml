@@ -13,14 +13,6 @@ spring:
     schemas: customer
     enabled: true
     locations: classpath:db/migration/customer
-auth:
-  service:
-    url: http://auth-server
-    timeout: 5000
-    register:
-      path: /auth/internal/register
-    user-by-email:
-      path: /auth/internal/users/by-email
 kafka:
   bootstrap-servers: localhost:9092
   producer:
@@ -37,7 +29,7 @@ customer:
   request-id-header: REQUEST_ID_HEADER
   auth-service-url: http://auth-server
   auth-register-path: /auth/internal/register
-  auth-user-by-email-path: /admin/auth/users/by-email
+  auth-user-by-email-path: /auth/internal/users/by-email
 
 
 jwt:
