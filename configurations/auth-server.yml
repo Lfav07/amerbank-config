@@ -20,7 +20,7 @@ spring:
     consumer:
       group-id: auth-server
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.Json
+      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         spring.json.trusted.packages: "*"
 eureka:
