@@ -27,6 +27,8 @@ spring:
 
 jwt:
   secret: ${JWT_SECRET}
+  serviceTokenExpirationMs: 120000
+  expirationMs: 3600000
 
 account:
   prefix: "ACCT"
