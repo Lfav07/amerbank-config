@@ -24,3 +24,8 @@ customer:
 jwt:
   secret: ${JWT_SECRET}
   serviceTokenExpirationMs: 120000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

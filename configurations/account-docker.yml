@@ -41,3 +41,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
