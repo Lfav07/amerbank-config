@@ -23,7 +23,7 @@ jwt:
 eureka:
   client:
     service-url:
-      defaultZone: http://discovery:8080/eureka/
+      defaultZone: http://discovery:8761/eureka/
 management:
   endpoints:
     web:
