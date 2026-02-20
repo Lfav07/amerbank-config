@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      httpclient:
+        connect-timeout: 2000
+        response-timeout: 5s
+
+      routes:
+        - id: auth_route
+          uri: lb://auth-server
+          predicates:
+            - Path=/auth/**
+
+        - id: customer_route
+          uri: lb://customer
+          predicates:
+            - Path=/customer/**
+
+        - id: account_route
+          uri: lb://account
+          predicates:
+            - Path=/account/**
+
+        - id: transaction_route
+          uri: lb://transaction
+          predicates:
+            - Path=/transaction/**
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+jwt:
+  secret: ${JWT_SECRET}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8080/eureka/
+gateway:
+  public-paths:
+    - /auth/login
+    - /auth/register
+    - /auth/admin/register
+    - /auth/admin/login
+    - /actuator/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
