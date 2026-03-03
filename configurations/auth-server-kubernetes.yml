@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/amerbank?currentSchema=auth
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    schemas: auth
+    enabled: true
+    locations: classpath:db/migration/auth
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: auth-server
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+eureka:
+  instance:
+    hostname: auth-server
+    prefer-ip-address: false
+  client:
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
+
+jwt:
+  secret: ${JWT_SECRET}
+  expirationMs: 3600000
+  serviceTokenExpirationMs: 120000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
