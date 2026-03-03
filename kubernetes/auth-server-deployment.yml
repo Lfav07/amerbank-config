@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-server
+  labels:
+    app: auth-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-server
+  template:
+    metadata:
+      labels:
+        app: auth-server
+    spec:
+      containers:
+        - name: auth-server
+          image: amerbank/auth-server:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: amerbank-secrets
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: amerbank-secrets
+                  key: DB_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: amerbank-secrets
+                  key: JWT_SECRET
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: "auth-server"
+            - name: EUREKA_INSTANCE_PREFERIPADDRESS
+              value: "false"
+          envFrom:
+            - configMapRef:
+                name: auth-server-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-server
+spec:
+  selector:
+    app: auth-server
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP

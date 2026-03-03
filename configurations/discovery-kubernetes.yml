@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: discovery
+server:
+  port: 8761
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  instance:
+    hostname: discovery
+    prefer-ip-address: false
+logging:
+  level:
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
