@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/amerbank?currentSchema=audit_log
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    schemas: account
+    enabled: true
+    locations: classpath:db/migration/account
+
+jwt:
+  secret: ${JWT_SECRET}
+  serviceTokenExpirationMs: 120000
+  expirationMs: 3600000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
