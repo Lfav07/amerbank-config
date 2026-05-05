@@ -10,7 +10,7 @@ spring:
       ddl-auto: validate
 
   flyway:
-    schemas: account
+    schemas: audit_log
     enabled: true
     locations: classpath:db/migration/audit
 
