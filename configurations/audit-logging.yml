@@ -12,7 +12,7 @@ spring:
   flyway:
     schemas: account
     enabled: true
-    locations: classpath:db/migration/account
+    locations: classpath:db/migration/audit
 
 jwt:
   secret: ${JWT_SECRET}
