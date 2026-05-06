@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   datasource:
     url: jdbc:postgresql://postgres:5432/amerbank?currentSchema=audit_log
@@ -16,8 +19,6 @@ spring:
 
 jwt:
   secret: ${JWT_SECRET}
-  serviceTokenExpirationMs: 120000
-  expirationMs: 3600000
 
 eureka:
   client:
