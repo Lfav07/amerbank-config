@@ -13,7 +13,21 @@ spring:
     schemas: audit_log
     enabled: true
     locations: classpath:db/migration/audit
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: audit-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
+      properties:
+        spring:
+          json:
+            use:
+              type:
+                headers: false
+            trusted:
+              packages: com.amerbank.*
 jwt:
   secret: ${JWT_SECRET}
   serviceTokenExpirationMs: 120000
