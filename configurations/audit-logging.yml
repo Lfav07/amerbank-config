@@ -22,7 +22,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.use.type.headers: false
-        spring.json.value.default.type: com.yourpackage.AuditEventMessage
+        spring.json.value.default.type: com.amerbank.audit_logging.dto.AuditEventMessage
         spring.json.trusted.packages: com.amerbank.*
 jwt:
   secret: ${JWT_SECRET}
