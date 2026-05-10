@@ -24,6 +24,11 @@ spring:
           predicates:
             - Path=/customer/**
 
+        - id: audit_route
+          uri: lb://audit-logging
+          predicates:
+            - Path=/audit/**
+
         - id: account_route
           uri: lb://account
           predicates:
@@ -42,7 +47,7 @@ jwt:
 eureka:
   client:
     service-url:
-       defaultZone: http://discovery:8761/eureka/
+      defaultZone: http://discovery:8761/eureka/
 gateway:
   public-paths:
     - /auth/login

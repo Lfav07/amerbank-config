@@ -24,6 +24,11 @@ spring:
           predicates:
             - Path=/customer/**
 
+        - id: audit_route
+          uri: lb://audit-logging
+          predicates:
+            - Path=/audit/**
+
         - id: account_route
           uri: lb://account
           predicates:
@@ -50,3 +55,9 @@ gateway:
     - /auth/admin/register
     - /auth/admin/login
     - /actuator/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
