@@ -38,6 +38,10 @@ spring:
           uri: lb://transaction
           predicates:
             - Path=/transaction/**
+        - id: loan_route
+          uri: lb://loan
+          predicates:
+            - Path=/loan/**
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
